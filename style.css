@@ -1,3 +1,66 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
 img {
-  width: 50px;
+  width: 70px;
+  margin: 20px;
+}
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.intro div:first-child {
+  font-size: 1.5rem;
+}
+.intro .selectButtons {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 16rem;
+}
+.intro .selectButtons > button {
+  height: 35px;
+  width: 100px;
+  background-color: rgb(255, 136, 0);
+  font-size: 1.2rem;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+.intro .selectButtons > button:hover {
+  background-color: #ffae22;
+
+  font-weight: bold;
+  color: black;
+  transition: 0.3s ease-in-out;
+}
+
+#xMark {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+table td {
+  padding: 0.5rem;
+  border: 5px solid orange;
+  cursor: pointer;
+}
+.playground {
+  margin-top: 40px;
 }

@@ -61,6 +61,9 @@ table td {
   border: 5px solid orange;
   cursor: pointer;
 }
+table td:hover {
+  background-color: rgba(158, 158, 158, 0.094);
+}
 .playground {
   margin-top: 40px;
 }

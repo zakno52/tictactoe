@@ -34,18 +34,31 @@ img {
 .intro .selectButtons > button {
   height: 35px;
   width: 100px;
+  padding-bottom: 3px;
+  font-weight: bold;
   background-color: rgb(255, 136, 0);
   font-size: 1.2rem;
   color: black;
   border: none;
   cursor: pointer;
+  transform: perspective(1px) translateZ(0);
 }
 .intro .selectButtons > button:hover {
   background-color: #ffae22;
-
-  font-weight: bold;
+  /* border-bottom: 4px solid #515151 !important; */
   color: black;
   transition: 0.3s ease-in-out;
+}
+
+.clicked:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-bottom: 4px solid #515151 !important;
+
+  transition-duration: 1s;
 }
 
 #xMark,

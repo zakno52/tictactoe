@@ -1,11 +1,11 @@
 const tictactoe = (function XOGame() {
   // Variables
-  const data = [];
-  const cooseBtns = document.querySelectorAll("#chooseBtn");
+  const data = ["X"];
+  const chooseBtns = document.querySelectorAll("#chooseBtn");
 
   // Events
   function addEventToChooseBtns() {
-    cooseBtns.forEach((choosebtn) => {
+    chooseBtns.forEach((choosebtn) => {
       choosebtn.addEventListener("click", () => saveChoice(choosebtn));
     });
   }
@@ -22,6 +22,17 @@ const tictactoe = (function XOGame() {
     const choice = choosebtn.textContent;
     data[0] = choice;
     console.log(data);
+
+    // toggle bottuns underline style
+    (function toggleChooseBtnsStyle() {
+      if (data[0] === "X") {
+        chooseBtns[0].classList.add("clicked");
+        chooseBtns[1].classList.remove("clicked");
+      } else {
+        chooseBtns[1].classList.add("clicked");
+        chooseBtns[0].classList.remove("clicked");
+      }
+    })();
   }
 
   function handleButtonClick(square) {

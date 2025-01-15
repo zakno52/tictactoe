@@ -17,16 +17,22 @@ const tictactoe = (function XOGame() {
     });
   }
   // handler - Show results
+
   function saveChoice(choosebtn) {
     const choice = choosebtn.textContent;
-
     data[0] = choice;
     console.log(data);
   }
 
   function handleButtonClick(square) {
-    data.push(square);
-    console.log(data);
+    // data.push(square);
+    const xMark = square.firstElementChild;
+    const oMark = square.lastElementChild;
+    if (data[0] === "X") {
+      xMark.style.display = "block";
+    } else {
+      oMark.style.display = "block";
+    }
   }
 
   return {

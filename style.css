@@ -48,7 +48,8 @@ img {
   transition: 0.3s ease-in-out;
 }
 
-#xMark {
+#xMark,
+#oMark {
   display: none;
 }
 
@@ -57,6 +58,8 @@ table {
   border-style: hidden;
 }
 table td {
+  height: 105px;
+  width: 105px;
   padding: 0.5rem;
   border: 5px solid orange;
   cursor: pointer;

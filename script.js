@@ -1,5 +1,5 @@
 const tictactoe = (function XOGame() {
-  // Variables
+  // 1- Variables
   const data = ["X"];
   const chooseBtns = document.querySelectorAll("#chooseBtn");
   const squares = document.querySelectorAll("td");
@@ -19,7 +19,7 @@ const tictactoe = (function XOGame() {
   let player2 = [];
   let clickCount = 0;
 
-  // Events
+  // 2- Events
   function addEventToButtons() {
     // for x-o Buttons
     chooseBtns.forEach((choosebtn) => {
@@ -35,8 +35,8 @@ const tictactoe = (function XOGame() {
       square.addEventListener("click", () => handleButtonClick(square, index));
     });
   }
-  // handler - Show results
 
+  // 3- handlers - Show results
   function saveChoice(choosebtn) {
     const choice = choosebtn.textContent;
     data[0] = choice;
@@ -54,7 +54,24 @@ const tictactoe = (function XOGame() {
     })();
   }
 
+  // gameBoard handler
   function handleButtonClick(square, index) {
+    // show reset button when game starts
+    introSection.style.display = "none";
+    restartButton.style.display = "block";
+    // symbols
+    const xMark = square.firstElementChild;
+    const oMark = square.lastElementChild;
+
+    if (data[0] === "X") {
+      xMark.style.display = "block";
+      chooseBtns[1].click();
+    } else if (data[0] === "O") {
+      oMark.style.display = "block";
+      chooseBtns[0].click();
+    }
+
+    // traching Game
     clickCount++;
     if (clickCount % 2 === 1) {
       // Odd click
@@ -65,19 +82,9 @@ const tictactoe = (function XOGame() {
       player2.push(index);
       console.log("Array2:", player2);
     }
-
-    introSection.style.display = "none";
-    restartButton.style.display = "block";
-    // data.push(square);
-    const xMark = square.firstElementChild;
-    const oMark = square.lastElementChild;
-    if (data[0] === "X") {
-      xMark.style.display = "block";
-    } else {
-      oMark.style.display = "block";
-    }
   }
 
+  // restart button handler
   function resetGame() {
     data.length = 0;
     data[0] = "X";

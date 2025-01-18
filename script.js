@@ -32,7 +32,10 @@ const tictactoe = (function XOGame() {
 
   function addEventToEachBox() {
     squares.forEach((square, index) => {
-      square.addEventListener("click", () => handleButtonClick(square, index));
+      square.addEventListener("click", () => {
+        handleButtonClick(square, index);
+        checkWinner();
+      });
     });
   }
 
@@ -65,38 +68,58 @@ const tictactoe = (function XOGame() {
 
     if (data[0] === "X") {
       xMark.style.display = "block";
+      square.style.pointerEvents = "none";
       chooseBtns[1].click();
     } else if (data[0] === "O") {
       oMark.style.display = "block";
+      square.style.pointerEvents = "none";
       chooseBtns[0].click();
+      console.log(clickCount);
     }
 
-    // traching Game
+    // tracking Game
     clickCount++;
     if (clickCount % 2 === 1) {
       // Odd click
       player1.push(index);
-      console.log("Array1:", player1);
+      player1.sort();
+      console.log("p1:", player1);
     } else {
       // Even click
       player2.push(index);
-      console.log("Array2:", player2);
+      player2.sort();
+      console.log("p2:", player2);
+    }
+  }
+  // Check winner
+  function checkWinner() {
+    if (player1.length === 3 || player2.length === 3) {
+      const playerArray = player1.length === 3 ? player1 : player2;
+      checkWinner(playerArray);
+      function checkWinner(playerArray) {
+        for (let index = 0; index < winPossibilities.length; index++) {
+          if (playerArray.join() === winPossibilities[index].join()) {
+            console.log(playerArray);
+          }
+        }
+      }
     }
   }
 
   // restart button handler
   function resetGame() {
-    data.length = 0;
-    data[0] = "X";
+    data.length = 1;
+    player1.length = 0;
+    player2.length = 0;
+
     squares.forEach((square) => {
       square.firstElementChild.style.display = "none";
       square.lastElementChild.style.display = "none";
+      square.style.pointerEvents = "auto";
     });
     restartButton.style.display = "none";
     introSection.style.display = "block";
   }
-
-  // Check winner
 
   return {
     init() {

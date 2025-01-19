@@ -43,7 +43,6 @@ const tictactoe = (function XOGame() {
   function saveChoice(choosebtn) {
     const choice = choosebtn.textContent;
     data[0] = choice;
-    console.log(data);
 
     // toggle bottuns underline style
     (function toggleChooseBtnsStyle() {
@@ -69,12 +68,11 @@ const tictactoe = (function XOGame() {
     if (data[0] === "X") {
       xMark.style.display = "block";
       square.style.pointerEvents = "none";
-      chooseBtns[1].click();
+      data[0] = "O";
     } else if (data[0] === "O") {
       oMark.style.display = "block";
       square.style.pointerEvents = "none";
-      chooseBtns[0].click();
-      console.log(clickCount);
+      data[0] = "X";
     }
 
     // tracking Game
@@ -83,27 +81,31 @@ const tictactoe = (function XOGame() {
       // Odd click
       player1.push(index);
       player1.sort();
-      console.log("p1:", player1);
     } else {
       // Even click
       player2.push(index);
       player2.sort();
-      console.log("p2:", player2);
     }
   }
   // Check winner
   function checkWinner() {
     if (player1.length >= 3 || player2.length >= 3) {
-      const playerArray = player1.length >= 3 ? player1 : player2;
-
-      let winCoordinates = winPossibilities.find((winCombo) =>
-        winCombo.every((num) => playerArray.includes(num))
+      let winCoordinates = winPossibilities.find(
+        (winCombo) =>
+          winCombo.every((num) => player1.includes(num)) ||
+          winCombo.every((num) => player2.includes(num))
       );
 
       if (winCoordinates !== undefined) {
         for (let index = 0; index < winCoordinates.length; index++) {
-          squares[winCoordinates[index]].style.backgroundColor = "green";
+          squares[winCoordinates[index]].classList.add("winning");
         }
+        squares.forEach((square) => {
+          square.style.pointerEvents = "none";
+        });
+        let winText = document.createElement("div");
+        winText.innerHTML = `${data[0]} Win`;
+        restartButton.after(winText);
       }
     }
   }
@@ -118,9 +120,10 @@ const tictactoe = (function XOGame() {
       square.firstElementChild.style.display = "none";
       square.lastElementChild.style.display = "none";
       square.style.pointerEvents = "auto";
+      square.classList.remove("winning");
     });
     restartButton.style.display = "none";
-    introSection.style.display = "block";
+    introSection.style.display = "flex";
   }
 
   return {

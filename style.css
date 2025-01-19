@@ -15,7 +15,8 @@ h1 {
 img {
   width: 70px;
 }
-.intro {
+.intro,
+.introToggle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,4 +89,8 @@ table td:hover {
 }
 .playground {
   margin-top: 40px;
+}
+.winning {
+  background-color: #5fd95f;
+  transition: 0.5s;
 }

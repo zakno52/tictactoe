@@ -94,20 +94,15 @@ const tictactoe = (function XOGame() {
   // Check winner
   function checkWinner() {
     if (player1.length >= 3 || player2.length >= 3) {
-      const playerArray = player1.length === 3 ? player1 : player2;
-      checkWinner(playerArray);
-      function checkWinner(playerArray) {
-        //   for (let index = 0; index < winPossibilities.length; index++) {
-        //     if (playerArray.join() === winPossibilities[index].join()) {
-        //       console.log(playerArray);
-        //     }
-        //   }
-        if (
-          winPossibilities
-            .map((possibility) => possibility.join())
-            .includes(playerArray.join())
-        ) {
-          console.log("winn");
+      const playerArray = player1.length >= 3 ? player1 : player2;
+
+      let winCoordinates = winPossibilities.find((winCombo) =>
+        winCombo.every((num) => playerArray.includes(num))
+      );
+
+      if (winCoordinates !== undefined) {
+        for (let index = 0; index < winCoordinates.length; index++) {
+          squares[winCoordinates[index]].style.backgroundColor = "green";
         }
       }
     }

@@ -1,10 +1,11 @@
 const tictactoe = (function XOGame() {
   // 1- Variables ---------------------------
   let data = "X";
-  const chooseBtns = document.querySelectorAll("#chooseBtn");
+  const switchBtn = document.querySelector(".switch");
+  const XOBtns = document.querySelectorAll("#chooseBtn");
   const squares = document.querySelectorAll("td");
   const introSection = document.querySelector(".introToggle");
-  const restartButton = document.querySelector(".restartSection");
+  const restartSection = document.querySelector(".restartSection");
   let winText = document.querySelector(".winText");
   const winPossibilities = [
     [0, 1, 2],
@@ -21,13 +22,11 @@ const tictactoe = (function XOGame() {
 
   // 2- Events -------------------------------
   function addEventToButtons() {
-    // for x-o Buttons
-    chooseBtns.forEach((choosebtn) => {
-      choosebtn.addEventListener("click", () => saveChoice(choosebtn));
-    });
+    // for switch Button
+    switchBtn.addEventListener("click", () => switchChoice());
 
     // for restart button
-    restartButton.addEventListener("click", () => resetGame());
+    restartSection.addEventListener("click", () => resetGame());
   }
 
   function addEventToEachBox() {
@@ -40,18 +39,21 @@ const tictactoe = (function XOGame() {
   }
 
   // 3- handlers - Show results ------------------------------
-  function saveChoice(choosebtn) {
-    const choice = choosebtn.textContent;
-    data = choice;
-
+  function switchChoice() {
     // toggle bottuns underline style
-    (function toggleChooseBtnsStyle() {
+    (function toggleswitchBtnStyle() {
       if (data === "X") {
-        chooseBtns[0].classList.add("clicked");
-        chooseBtns[1].classList.remove("clicked");
+        XOBtns[1].classList.add("clicked");
+        XOBtns[1].innerHTML = "X";
+        XOBtns[0].classList.remove("clicked");
+        XOBtns[0].innerHTML = "O";
+        data = "O";
       } else {
-        chooseBtns[1].classList.add("clicked");
-        chooseBtns[0].classList.remove("clicked");
+        XOBtns[0].classList.add("clicked");
+        XOBtns[0].innerHTML = "X";
+        XOBtns[1].classList.remove("clicked");
+        XOBtns[1].innerHTML = "O";
+        data = "X";
       }
     })();
   }
@@ -60,7 +62,7 @@ const tictactoe = (function XOGame() {
   function handleButtonClick(square, index) {
     // show reset button when game starts
     introSection.style.display = "none";
-    restartButton.style.display = "block";
+    restartSection.style.display = "block";
     // symbols
     const xMark = square.firstElementChild;
     const oMark = square.lastElementChild;
@@ -119,7 +121,7 @@ const tictactoe = (function XOGame() {
       square.style.pointerEvents = "auto";
       square.classList.remove("winning");
     });
-    restartButton.style.display = "none";
+    restartSection.style.display = "none";
     introSection.style.display = "flex";
     winText.style.display = "none";
   }

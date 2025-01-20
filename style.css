@@ -37,7 +37,8 @@ img {
   justify-content: space-between;
   /* width: 16rem; */
 }
-.intro #chooseBtn {
+.intro #chooseBtn,
+.restartButton {
   height: 35px;
   width: 100px;
   padding-bottom: 3px;
@@ -59,6 +60,11 @@ img {
 .clicked {
   background-color: #3fc1c9 !important;
 }
+.restartButton {
+  background-color: #222831;
+  color: #fc5185;
+  border-bottom: 4px solid #3fc1c9;
+}
 
 .intro #chooseBtn:before {
   content: "";
@@ -67,6 +73,7 @@ img {
   bottom: 0;
   left: 0;
 }
+
 .intro .switch {
   border: none;
   background: none;

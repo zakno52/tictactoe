@@ -35,21 +35,23 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 16rem;
+  /* width: 16rem; */
 }
-.intro button {
+.intro #chooseBtn {
   height: 35px;
   width: 100px;
   padding-bottom: 3px;
+  margin: 0 10px;
   font-weight: bold;
   background-color: #fc5185;
   color: #222831;
   font-size: 1.2rem;
   border: none;
+  border-bottom: 4px solid #222831;
   cursor: pointer;
   transform: perspective(1px) translateZ(0);
 }
-.intro button:hover {
+.intro #chooseBtn:hover {
   background-color: #fc518482;
   /* border-bottom: 4px solid #515151 !important; */
   transition: 0.3s;
@@ -58,13 +60,35 @@ img {
   background-color: #3fc1c9 !important;
 }
 
-.clicked:before {
+.intro #chooseBtn:before {
   content: "";
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  border-bottom: 4px solid #222831 !important;
+}
+.intro .switch {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0 20px;
+}
+.intro .switch > img {
+  width: 20px;
+}
+.playerInput {
+  width: 200px;
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  overflow: visible;
+  white-space: nowrap;
+}
+.playerInput:focus {
+  outline: none;
+}
+.playerInput:nth-child(1) {
+  text-align: right;
 }
 
 #xMark,

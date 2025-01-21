@@ -39,6 +39,7 @@ img {
 }
 .intro #chooseBtn,
 .restartButton {
+  position: relative;
   height: 35px;
   width: 100px;
   padding-bottom: 3px;
@@ -49,29 +50,23 @@ img {
   font-size: 1.2rem;
   border: none;
   border-bottom: 4px solid #222831;
-  cursor: pointer;
-  transform: perspective(1px) translateZ(0);
+  transition: all 0.5s ease;
 }
-.intro #chooseBtn:hover {
-  background-color: #fc518482;
-  /* border-bottom: 4px solid #515151 !important; */
-  transition: 0.3s;
+.intro #chooseBtn:nth-child(2) {
+  background-color: #3fc1c9;
 }
 .clicked {
-  background-color: #3fc1c9 !important;
+  transform: translateX(188px);
 }
+.clicked2 {
+  transform: translateX(-188px);
+}
+
 .restartButton {
   background-color: #222831;
   color: #fc5185;
   border-bottom: 4px solid #3fc1c9;
-}
-
-.intro #chooseBtn:before {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  cursor: pointer;
 }
 
 .intro .switch {

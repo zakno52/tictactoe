@@ -1,6 +1,7 @@
 const tictactoe = (function XOGame() {
   // 1- Variables ---------------------------
-  let data = "X";
+  let choiceOne = "X";
+  let choiceTwo = "";
   const switchBtn = document.querySelector(".switch");
   const XOBtns = document.querySelectorAll("#chooseBtn");
   const squares = document.querySelectorAll("td");
@@ -40,22 +41,9 @@ const tictactoe = (function XOGame() {
 
   // 3- handlers - Show results ------------------------------
   function switchChoice() {
-    // toggle bottuns underline style
-    (function toggleswitchBtnStyle() {
-      if (data === "X") {
-        XOBtns[1].classList.add("clicked");
-        XOBtns[1].innerHTML = "X";
-        XOBtns[0].classList.remove("clicked");
-        XOBtns[0].innerHTML = "O";
-        data = "O";
-      } else {
-        XOBtns[0].classList.add("clicked");
-        XOBtns[0].innerHTML = "X";
-        XOBtns[1].classList.remove("clicked");
-        XOBtns[1].innerHTML = "O";
-        data = "X";
-      }
-    })();
+    XOBtns[1].classList.toggle("clicked2");
+    XOBtns[0].classList.toggle("clicked");
+    choiceOne = choiceOne === "X" ? "O" : "X";
   }
 
   // gameBoard handler
@@ -68,22 +56,24 @@ const tictactoe = (function XOGame() {
     const oMark = square.lastElementChild;
 
     // toggle symbols + tracking game
-    if (data === "X") {
+    if (choiceOne === "X") {
       xMark.classList.add("showMark");
       square.style.pointerEvents = "none";
-      data = "O";
+      choiceOne = "O";
       player1.push(index);
       player1.sort();
     } else {
       oMark.classList.add("showMark");
       square.style.pointerEvents = "none";
-      data = "X";
+      choiceOne = "X";
       player2.push(index);
       player2.sort();
     }
   }
   // Check winner
   function checkWinner() {
+    const playersNames = document.querySelectorAll(".playerInput");
+
     if (player1.length >= 3 || player2.length >= 3) {
       let winCoordinates = winPossibilities.find(
         (winCombo) =>
@@ -98,11 +88,11 @@ const tictactoe = (function XOGame() {
         squares.forEach((square) => {
           square.style.pointerEvents = "none";
         });
-        if (data === "X") {
-          data = "O";
+        if (choiceOne === "X") {
+          choiceOne = "O";
           winText.innerHTML = `O Win`;
         } else {
-          data = "X";
+          choiceOne = "X";
           winText.innerHTML = `X Win`;
         }
         winText.style.display = "block";

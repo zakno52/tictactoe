@@ -7,6 +7,7 @@ const tictactoe = (function XOGame() {
   const squares = document.querySelectorAll("td");
   const introSection = document.querySelector(".introToggle");
   const restartSection = document.querySelector(".restartSection");
+  const playersNames = document.querySelectorAll(".playerInput");
   let winText = document.querySelector(".winText");
   const winPossibilities = [
     [0, 1, 2],
@@ -27,7 +28,9 @@ const tictactoe = (function XOGame() {
     switchBtn.addEventListener("click", () => switchChoice());
 
     // for restart button
-    restartSection.addEventListener("click", () => resetGame());
+    restartSection.firstElementChild.addEventListener("click", () =>
+      resetGame()
+    );
   }
 
   function addEventToEachBox() {
@@ -48,8 +51,11 @@ const tictactoe = (function XOGame() {
 
   // gameBoard handler
   function handleButtonClick(square, index) {
+    playersNames[0].classList.toggle("playerInputColor");
+    playersNames[1].classList.toggle("playerInputColor2");
     // show reset button when game starts
     restartSection.style.opacity = "1";
+    restartSection.firstElementChild.style.pointerEvents = "auto";
     introSection.style.top = "0";
     introSection.style.pointerEvents = "none";
     // symbols
@@ -74,7 +80,10 @@ const tictactoe = (function XOGame() {
 
   // Check winner
   function checkWinner() {
-    const playersNames = document.querySelectorAll(".playerInput");
+    let name =
+      playersNames[0].classList[1] === "playerInputColor"
+        ? playersNames[1].value
+        : playersNames[0].value;
 
     if (player1.length >= 3 || player2.length >= 3) {
       let winCoordinates = winPossibilities.find(
@@ -85,15 +94,11 @@ const tictactoe = (function XOGame() {
 
       if (winCoordinates !== undefined) {
         if (choiceOne === "O") {
-          winText.innerHTML = `X Win`;
+          winText.innerHTML = `${name} Won`;
           winning = "winningX";
-
-          console.log(player1, player2);
         } else {
-          winText.innerHTML = `O Win`;
+          winText.innerHTML = `${name} Won`;
           winning = "winningO";
-
-          console.log(player1, player2);
         }
 
         for (let index = 0; index < winCoordinates.length; index++) {
@@ -103,6 +108,14 @@ const tictactoe = (function XOGame() {
           square.style.pointerEvents = "none";
         });
 
+        winText.style.display = "block";
+      }
+
+      if (
+        winCoordinates === undefined &&
+        (player1.length === 5 || player2.length === 5)
+      ) {
+        winText.innerHTML = `Draw`;
         winText.style.display = "block";
       }
     }
@@ -120,10 +133,10 @@ const tictactoe = (function XOGame() {
       square.classList.remove(winning);
     });
     restartSection.style.opacity = "0";
+    restartSection.firstElementChild.style.pointerEvents = "none";
     introSection.style.top = "2rem";
     winText.style.display = "none";
     introSection.style.pointerEvents = "auto";
-    // choiceOne = XOBtns[0].classList[0] === "clicked" ? "O" : "X";
   }
 
   return {

@@ -39,6 +39,7 @@ img {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
   transition: opacity 0.5s, transform 0.5s;
 }
 .intro .selectButtons {
@@ -46,7 +47,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 16rem; */
 }
 .intro #chooseBtn,
 .restartButton {
@@ -78,6 +78,7 @@ img {
   color: #fc5185;
   border-bottom: 4px solid #3fc1c9;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .intro .switch {
@@ -109,8 +110,6 @@ img {
   max-width: 0;
   max-height: 0;
   opacity: 0;
-  position: relative;
-  left: 1rem;
   transition: opacity 0.5s, transform 0.5s;
 }
 .showMark {
@@ -129,6 +128,8 @@ table td {
   padding: 0.5rem;
   border: 5px solid #222831;
   cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
 }
 table td:hover {
   background-color: rgba(158, 158, 158, 0.094);
@@ -153,8 +154,13 @@ table td:hover {
   font-weight: bold;
   text-align: center;
 }
-/* .playerInput {
+.playerInputColor {
   text-decoration: underline #3fc1c9 29px;
   text-underline-offset: -21px;
   text-decoration-skip-ink: none;
-} */
+}
+.playerInputColor2 {
+  text-decoration: underline #fc5185 29px;
+  text-underline-offset: -21px;
+  text-decoration-skip-ink: none;
+}
